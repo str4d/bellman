@@ -11,6 +11,7 @@ pub mod multicore;
 mod multiexp;
 pub mod domain;
 pub mod groth16;
+pub mod r1cs;
 
 use pairing::{Engine, Field};
 

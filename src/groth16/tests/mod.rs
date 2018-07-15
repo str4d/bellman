@@ -398,3 +398,20 @@ fn test_xordemo() {
         &[Fr::one()]
     ).unwrap());
 }
+
+#[test]
+fn serialize_xordemo_circuit() {
+    use std::fs::File;
+    use r1cs::serialize_to_r1cs;
+
+    let c = XORDemo::<DummyEngine> {
+        a: Some(true),
+        b: Some(false),
+        _marker: PhantomData
+    };
+
+    let mut r1csfile =  File::create("xordemo.r1cs").unwrap();
+    let mut assignments =  File::create("xordemo.assignments").unwrap();
+
+    serialize_to_r1cs(c, &mut r1csfile, &mut assignments).unwrap();
+}
